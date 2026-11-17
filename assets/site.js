@@ -46,21 +46,15 @@
       var place = String(data.get("place") || "").trim();
       var comment = String(data.get("comment") || "").trim();
       var digits = phone.replace(/\D/g, "");
-      var agreed = form.querySelector("[name=pdn]").checked;
       if (name.length < 2 || digits.length < 10) {
         error.hidden = false;
         error.textContent = "Напишите имя и телефон, по которому можно перезвонить.";
         return;
       }
-      if (!agreed) {
-        error.hidden = false;
-        error.textContent = "Поставьте согласие на обработку персональных данных. Без него заявку отправить нельзя.";
-        return;
-      }
       error.hidden = true;
       var lines = [
         "Заявка с сайта Альфа Машинери, Республика Татарстан.",
-        "Согласие на обработку персональных данных: да, " + new Date().toLocaleString("ru-RU"),
+        "Согласие на обработку персональных данных: дано нажатием кнопки «Получить предложение», " + new Date().toLocaleString("ru-RU"),
         "Имя: " + name,
         "Телефон: " + phone,
         "Техника: " + (model || "нужна помощь с выбором"),
@@ -176,21 +170,14 @@
     window.__alfaCountersLoaded = true;
   };
   if (cookieBar) {
-    var analyticsBox = cookieBar.querySelector("[data-consent=analytics]");
-    var adsBox = cookieBar.querySelector("[data-consent=ads]");
     var openCookie = function () {
-      var saved = readConsent();
-      analyticsBox.checked = !!(saved && saved.analytics);
-      adsBox.checked = !!(saved && saved.ads);
       cookieBar.hidden = false;
     };
     cookieBar.querySelector("[data-cookie-reject]").addEventListener("click", function () {
-      analyticsBox.checked = false;
-      adsBox.checked = false;
       writeConsent(false, false);
     });
     cookieBar.querySelector("[data-cookie-save]").addEventListener("click", function () {
-      writeConsent(analyticsBox.checked, adsBox.checked);
+      writeConsent(true, true);
     });
     document.querySelectorAll("[data-cookie-open]").forEach(function (button) {
       button.addEventListener("click", openCookie);
