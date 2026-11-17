@@ -142,4 +142,13 @@
     lease.addEventListener("input", render);
     render();
   }
+
+  var cookieBar = document.querySelector("[data-cookie]");
+  if (cookieBar && window.localStorage.getItem("alfa-cookie-ok") !== "1") {
+    cookieBar.hidden = false;
+    cookieBar.querySelector("[data-cookie-ok]").addEventListener("click", function () {
+      window.localStorage.setItem("alfa-cookie-ok", "1");
+      cookieBar.hidden = true;
+    });
+  }
 })();
