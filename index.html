@@ -430,9 +430,12 @@
   <label>Комментарий
     <textarea name="comment" placeholder="Грунт, объём работ, срок"></textarea>
   </label>
+  <label class="consent">
+    <input name="pdn" type="checkbox" value="yes">
+    <span>Даю отдельное <a href="consent/index.html">согласие</a> на обработку имени, телефона и текста заявки, чтобы Альфа Машинери перезвонила и подготовила предложение. Согласие можно отозвать письмом на alfa-mash@bk.ru.</span>
+  </label>
   <p class="form-error" hidden></p>
   <button class="btn btn-primary" type="submit">Получить предложение</button>
-  <p class="form-note">Отправляя заявку, вы соглашаетесь, что мы используем имя и телефон, чтобы перезвонить. <a href="privacy/index.html">Политика конфиденциальности</a></p>
 </form>
 <div class="success" hidden>
   <p>Заявка собрана. Отправьте её менеджеру или позвоните — так она точно дойдёт.</p>
@@ -462,6 +465,8 @@
         <li><a href="index.html#servis">Сервис</a></li>
         <li><a href="index.html#kontakty">Контакты</a></li>
         <li><a href="privacy/index.html">Конфиденциальность</a></li>
+        <li><a href="consent/index.html">Согласие на данные</a></li>
+        <li><button type="button" data-cookie-open>Настройки куки</button></li>
       </ul>
     </div>
     <div>
@@ -474,8 +479,16 @@
   </div>
 </footer>
 <div class="cookie-bar" data-cookie hidden>
-  <p>Сайт использует куки аналитики и рекламных систем: они считают визиты и помогают показывать объявления. Нажимая «Понятно», вы соглашаетесь с этим. <a href="privacy/index.html">Политика конфиденциальности</a></p>
-  <button type="button" class="btn btn-primary" data-cookie-ok>Понятно</button>
+  <div class="cookie-copy">
+    <b>Куки и счётчики</b>
+    <p>Сайт можно смотреть без аналитики и рекламы. Эти счётчики включаются только после вашего разрешения и собирают данные о визите, не текст заявки. <a href="privacy/index.html">Политика конфиденциальности</a></p>
+    <label class="cookie-choice"><input type="checkbox" data-consent="analytics"><span>Аналитика: число визитов и просмотренные страницы</span></label>
+    <label class="cookie-choice"><input type="checkbox" data-consent="ads"><span>Реклама: откуда пришёл посетитель и показ объявлений</span></label>
+  </div>
+  <div class="cookie-actions">
+    <button type="button" class="btn btn-ghost" data-cookie-reject>Отказаться</button>
+    <button type="button" class="btn btn-primary" data-cookie-save>Разрешить выбранное</button>
+  </div>
 </div>
 <script src="assets/site.js"></script>
 </body>
